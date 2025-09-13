@@ -1,0 +1,339 @@
+/* Hangman Game Styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import "tailwindcss";
+
+/* Game Container */
+.game-container {
+    @apply min-h-screen bg-gray-900 py-8 px-4;
+  }
+  
+  .game-wrapper {
+    @apply max-w-4xl mx-auto;
+  }
+  
+  /* Header Styles */
+  .game-header {
+    @apply text-center mb-8;
+  }
+  
+  .game-title {
+    @apply text-5xl font-bold text-white mb-4 font-mono tracking-wide;
+  }
+  
+  .game-controls {
+    @apply flex justify-center gap-4 mb-4;
+  }
+  
+  .hint-button {
+    @apply bg-yellow-600 hover:bg-yellow-700 text-white;
+  }
+  
+  .new-game-button {
+    @apply bg-green-600 hover:bg-green-700 text-white;
+  }
+  
+  .hint-container {
+    @apply bg-gray-800 border border-gray-600 rounded-lg p-4 max-w-md mx-auto;
+  }
+  
+  .hint-text {
+    @apply text-yellow-300 font-semibold;
+  }
+  
+  /* Game Board */
+  .game-board {
+    @apply grid md:grid-cols-2 gap-8 mb-8;
+  }
+  
+  .hangman-section {
+    @apply flex justify-center;
+  }
+  
+  .word-section {
+    @apply flex flex-col justify-center items-center space-y-6;
+  }
+  
+  /* Hangman Drawing Styles */
+  .hangman-container {
+    @apply bg-gray-800 rounded-lg p-8 min-h-80 flex items-center justify-center;
+  }
+  
+  .hangman-drawing {
+    @apply relative flex justify-center items-center;
+  }
+/* Gallows */
+.gallows {
+  @apply relative;
+  width: 256px;
+  height: 320px;
+}
+
+.gallows-base {
+  @apply bg-white absolute bottom-0 left-8;
+  height: 4px;
+  width: 192px;
+}
+
+.gallows-post {
+  @apply bg-white absolute bottom-0 left-20;
+  width: 4px;
+  height: 256px;
+}
+
+.gallows-beam {
+  @apply bg-white absolute left-20;
+  height: 4px;
+  width: 128px;
+  top: 16px;
+}
+
+.gallows-noose {
+  @apply bg-white absolute;
+  width: 4px;
+  height: 48px;
+  top: 16px;
+  right: 48px;
+}
+
+/* Hangman container */
+.hangman-body-container {
+  @apply absolute;
+  top: 64px;
+  right: 48px;
+  transform: translateX(-50%);
+}
+
+/* Hangman body parts */
+.hangman-head {
+  @apply absolute border-4 border-white rounded-full bg-transparent;
+}
+
+.hangman-body,
+.hangman-arm,
+.hangman-leg {
+  @apply absolute bg-white;
+}
+
+.hangman-right-arm {
+  transform-origin: left;
+}
+
+.hangman-left-arm {
+  transform-origin: right;
+}
+
+.hangman-right-leg {
+  transform-origin: left;
+}
+
+.hangman-left-leg {
+  transform-origin: right;
+}
+
+  /* Word Display */
+  .word-display {
+    @apply flex justify-center items-center gap-3 text-6xl font-bold font-mono text-white uppercase tracking-wide;
+  }
+  
+  .word-letter {
+    @apply border-b-4 border-white pb-2 text-center;
+    min-width: 60px;
+  }
+  
+  .letter-content {
+    @apply block;
+  }
+  
+  /* Guesses Info */
+  .guesses-info {
+    @apply text-center;
+  }
+  
+  .guesses-count {
+    @apply text-lg font-semibold text-gray-300;
+  }
+  
+  .wrong-letters {
+    @apply text-red-400 text-lg mt-2;
+  }
+  
+  /* Keyboard Styles */
+  .keyboard-section {
+    @apply mb-8;
+  }
+  
+  .keyboard-grid {
+    @apply grid grid-cols-6 sm:grid-cols-8 md:grid-cols-9 gap-2 max-w-2xl mx-auto;
+  }
+  
+  .keyboard-key {
+    @apply w-12 h-12 text-lg font-bold border-2 transition-all duration-200;
+  }
+  
+  .keyboard-key-default {
+    @apply bg-gray-800 border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500 hover:scale-105 active:scale-95;
+  }
+  
+  .keyboard-key-correct {
+    @apply bg-green-600 border-green-400 text-white;
+  }
+  
+  .keyboard-key-wrong {
+    @apply bg-red-600 border-red-400 text-white;
+  }
+  
+  .keyboard-key-disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black flex items-center justify-center z-50;
+  }
+  
+  .modal-container {
+    @apply bg-gray-900 border-2 border-gray-600 rounded-lg p-8 max-w-md w-full mx-4 text-center;
+  }
+  
+  .modal-title {
+    @apply text-3xl font-bold text-white mb-4;
+  }
+  
+  .modal-content {
+    @apply mb-6;
+  }
+  
+  .modal-message {
+    @apply text-xl mb-4;
+  }
+  
+  .modal-message.success {
+    @apply text-green-400;
+  }
+  
+  .modal-message.error {
+    @apply text-red-400;
+  }
+  
+  .modal-subtitle {
+    @apply text-lg text-gray-300 mb-2;
+  }
+  
+  .modal-word {
+    @apply text-2xl font-bold text-white mb-6;
+  }
+  
+  .modal-buttons {
+    @apply flex gap-4 justify-center;
+  }
+  
+  .modal-button-primary {
+    @apply bg-green-600 hover:bg-green-700 text-white px-6 py-2;
+  }
+  
+  .modal-button-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white px-6 py-2;
+  }
+  
+  .modal-button-secondary {
+    @apply bg-gray-600 hover:bg-gray-700 text-white px-6 py-2;
+  }
+  
+  .modal-close-button {
+    @apply mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2;
+  }
+  
+  /* Start Screen Styles */
+  .start-screen {
+    @apply min-h-screen bg-gray-900 flex items-center justify-center;
+  }
+  
+  .start-content {
+    @apply text-center;
+  }
+  
+  .start-title {
+    @apply text-6xl font-bold text-white mb-8 font-mono tracking-wide;
+  }
+  
+  .start-hangman {
+    @apply mb-8;
+  }
+  
+  .start-description {
+    @apply text-xl text-gray-300 mb-8 max-w-md mx-auto;
+  }
+  
+  .start-button {
+    @apply bg-blue-600 hover:bg-blue-700 text-white text-xl px-8 py-4 font-bold;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 640px) {
+    .start-title,
+    .game-title {
+      @apply text-4xl;
+    }
+  
+    .word-display {
+      @apply text-4xl gap-2;
+    }
+  
+    .word-letter {
+      min-width: 45px;
+    }
+  
+    .keyboard-key {
+      @apply w-10 h-10 text-base;
+    }
+  
+    .gallows {
+      width: 200px;
+      height: 250px;
+    }
+  
+    .gallows-base {
+      width: 150px;
+    }
+  
+    .gallows-post {
+      height: 200px;
+    }
+  
+    .gallows-beam {
+      width: 100px;
+    }
+  
+    .hangman-body-container {
+      top: 50px;
+    }
+  }
+  
+  /* Animation Effects */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .modal-container {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Hover Effects */
+  .start-button:hover,
+  .new-game-button:hover,
+  .hint-button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .start-button:active,
+  .new-game-button:active,
+  .hint-button:active {
+    transform: translateY(0);
+  }
