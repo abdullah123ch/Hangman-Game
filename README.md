@@ -134,7 +134,7 @@ Contributions are welcome! Here's how you can help:
 - Create additional themes (neon, retro, etc.)
 - Add difficulty levels
 - Improve mobile experience
-- ♿ Enhance accessibility features
+- Enhance accessibility features
 
 ## License
 
