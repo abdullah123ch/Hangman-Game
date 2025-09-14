@@ -1,4 +1,38 @@
-[
+// generateHints.ts
+import fs from "fs";
+import fetch from "node-fetch"; // install with: npm install node-fetch
+
+// Shared type
+export interface WordItem {
+  word: string;
+  hint: string;
+}
+
+interface Definition {
+  definition: string;
+  example?: string;
+}
+
+interface Meaning {
+  partOfSpeech: string;
+  definitions: Definition[];
+}
+
+interface Phonetic {
+  text?: string;
+  audio?: string;
+}
+
+interface DictionaryEntry {
+  word: string;
+  phonetics: Phonetic[];
+  meanings: Meaning[];
+}
+
+type DictionaryApiResponse = DictionaryEntry[];
+
+// ---- List of words to generate ----
+const rawWords: string[] = [
     "able",
     "about",
     "absolute",
@@ -850,4 +884,57 @@
     "year",
     "yesterday",
     "young"
-  ]
+  ];
+
+// ---- Fetch a hint for one word ----
+async function getHint(word: string): Promise<string> {
+  try {
+    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    if (!res.ok) throw new Error("No definition found");
+    const data: DictionaryApiResponse = await res.json();
+    return (
+      data[0]?.meanings[0]?.definitions[0]?.definition ||
+      `A word related to "${word}"`
+    );
+  } catch {
+    return `A word related to "${word}"`; // fallback
+  }
+}
+
+// ---- Main generator ----
+async function generate() {
+  const results: WordItem[] = [];
+
+  for (const word of rawWords) {
+    const hint = await getHint(word);
+    results.push({ word: word.toUpperCase(), hint });
+    console.log(`✅ Added: ${word} → ${hint}`);
+  }
+
+  // Safely stringify hints (escape quotes & newlines)
+  const entries = results
+    .map(
+      (item) =>
+        `  { word: "${item.word}", hint: "${item.hint
+          .replace(/\\/g, "\\\\") // escape backslashes
+          .replace(/"/g, '\\"')   // escape double quotes
+          .replace(/\n/g, " ")}" }`
+    )
+    .join(",\n");
+
+  const output = `// wordlist.ts
+export interface WordItem {
+  word: string;
+  hint: string;
+}
+
+export const WORD_LIST: WordItem[] = [
+${entries}
+];
+`;
+
+  fs.writeFileSync("src/data/wordList.ts", output, "utf-8");
+  console.log("✨ wordlist.ts updated!");
+}
+
+generate();

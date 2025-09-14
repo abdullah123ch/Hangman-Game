@@ -2,7 +2,7 @@
 
 A modern, interactive Hangman game built with React, TypeScript, and Tailwind CSS. Features a dark chalkboard aesthetic reminiscent of classic classroom games.
 
-![Hangman Game Preview](./public/game.png)
+![Hangman Game Preview](./public/hangman.png)
 
 ## Features
 
@@ -24,11 +24,38 @@ A modern, interactive Hangman game built with React, TypeScript, and Tailwind CS
 - Node.js (v14 or higher)
 - npm or yarn package manager
 
+#### Install Node.js & npm
+
+First, make sure you have Node.js (which comes with npm) installed.
+
+**On Linux (Debian/Ubuntu)**
+```bash
+sudo apt update
+sudo apt install -y nodejs npm
+```
+
+**On macOS (using Homebrew)**
+```bash
+brew install node
+```
+
+**On Windows**
+1. Go to [Node.js downloads](https://nodejs.org/en/download/)
+2. Download the LTS version (recommended)
+3. Run the installer and follow the instructions
+
+**Verify installation**
+After installing, check versions:
+```bash
+node -v
+npm -v
+```
+
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/abdullah@123/hangman-game.git
+   git clone https://github.com/yourusername/hangman-game.git
    cd hangman-game
    ```
 
@@ -80,7 +107,7 @@ A modern, interactive Hangman game built with React, TypeScript, and Tailwind CS
 - **Keyboard Support** - Full keyboard navigation support
 - **Accessibility** - Proper contrast ratios and semantic HTML
 
-## Customization
+## 🔧 Customization
 
 ### Adding New Words
 
@@ -108,7 +135,7 @@ Adjust game settings in `App.tsx`:
 - Keyboard layout
 - Win/lose conditions
 
-## Browser Support
+## 📱 Browser Support
 
 - Chrome (recommended)
 - Firefox
@@ -136,9 +163,7 @@ Contributions are welcome! Here's how you can help:
 - Improve mobile experience
 - Enhance accessibility features
 
-## License
-
-## Acknowledgments
+##  Acknowledgments
 
 - Inspired by classic Hangman games
 - Built with modern web technologies
