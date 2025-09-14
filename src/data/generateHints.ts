@@ -891,11 +891,11 @@ async function getHint(word: string): Promise<string> {
   try {
     const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
     if (!res.ok) throw new Error("No definition found");
-    const data: DictionaryApiResponse = await res.json();
-    return (
-      data[0]?.meanings[0]?.definitions[0]?.definition ||
-      `A word related to "${word}"`
-    );
+
+    // Cast res.json() to your type
+    const data = (await res.json()) as DictionaryApiResponse;
+
+    return data[0]?.meanings[0]?.definitions[0]?.definition || `A word related to "${word}"`;
   } catch {
     return `A word related to "${word}"`; // fallback
   }
